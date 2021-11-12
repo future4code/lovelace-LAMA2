@@ -6,11 +6,11 @@ export class UserDatabase extends BaseDatabase {
    static TABLE_NAME = "lama_user";
 
   public async createUser(
-    id: string,
     email: string,
     name: string,
     password: string,
-    role: string
+    role: string,
+    id?: string,
   ): Promise<void> {
     try {
       await BaseDatabase.connection
@@ -22,7 +22,7 @@ export class UserDatabase extends BaseDatabase {
           role
         })
         .into(UserDatabase.TABLE_NAME);
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error.sqlMessage || error.message);
     }
   }
