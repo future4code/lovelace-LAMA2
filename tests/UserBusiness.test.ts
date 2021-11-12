@@ -25,7 +25,7 @@ describe("Testando a função SignUp", () => {
         try {
             await userBusiness.createUser(input)
 
-        } catch (error:any) {
+        } catch (error) {
             expect(error.message).toBe("Preencha os campos corretamente!")
 
         }
@@ -49,7 +49,7 @@ describe("Testando a função SignUp", () => {
         try {
             await userBusiness.createUser(input)
 
-        } catch (error:any) {
+        } catch (error) {
             expect(error.message).toBe("Preencha os campos corretamente!")
         }
     })
@@ -72,7 +72,7 @@ describe("Testando a função SignUp", () => {
         try {
             await userBusiness.createUser(input)
 
-        } catch (error:any) {
+        } catch (error) {
             expect(error.message).toBe("Preencha os campos corretamente!")
 
         }
@@ -96,7 +96,7 @@ describe("Testando a função SignUp", () => {
         try {
             await userBusiness.createUser(input)
 
-        } catch (error:any) {
+        } catch (error) {
             expect(error.message).toBe("A senha precisa ter no mínimo 6 caracteres!")
 
         }
@@ -120,7 +120,7 @@ describe("Testando a função SignUp", () => {
         try {
             await userBusiness.createUser(input)
 
-        } catch (error:any) {
+        } catch (error) {
             expect(error.message).toBe("Preencha os campos corretamente!")
 
         }
