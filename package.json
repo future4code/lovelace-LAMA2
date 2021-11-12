@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "dev":"ts-node-dev --transpile-only --ignore-watch node_modules ./src/index.ts",
-    "start": "tsc && node .build/src/index.js",
+    "start": "tsc && node ./build/src/index.js",
     "migrations": "ts-node-dev ./src/data/migrations.ts"
   },
 

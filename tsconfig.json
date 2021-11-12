@@ -9,7 +9,7 @@
      "strict": true,
      "noImplicitAny": true,
      "esModuleInterop": true,
-     "forceConsistentCasingInFileNames": true,
-     "useUnknownInCatchVariables": false
+     "forceConsistentCasingInFileNames": true
+    //  "useUnknownInCatchVariables": false
   }
 }
