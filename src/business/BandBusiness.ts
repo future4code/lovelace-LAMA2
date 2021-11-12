@@ -6,16 +6,25 @@ import { Authenticator } from "../service/Authenticator";
 
 export class BandBusiness {
 
+    constructor(
+        private idGenerator: IdGenerator,
+        private authenticator: Authenticator,
+        private bandDatabase: BandDatabase
+    ) {
+
+    }
+
     async createBand(band:BandInputDTO){
 
-        const idGenerator = new IdGenerator();
-        const id = idGenerator.generate();
+        if (!band.name || !band.music_genre || !band.responsible) {
+            throw new Error("Preencha os campos corretamente!")
+        }
 
-        const bandDatabase = new BandDatabase();
-        await bandDatabase.createBand(id, band.name, band.music_genre, band.responsible);
+        const id = this.idGenerator.generate();
 
-        const authenticator = new Authenticator();
-        const accessToken = authenticator.generateToken({ id });
+        await this.bandDatabase.createBand(id, band.name, band.music_genre, band.responsible);
+
+        const accessToken = this.authenticator.generateToken({ id });
 
         return accessToken
     }
