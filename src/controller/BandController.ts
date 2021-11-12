@@ -7,7 +7,9 @@ import { Authenticator } from "../service/Authenticator";
 import { BandDatabase } from "../data/BandDatabase";
 
 const idGenerator = new IdGenerator()
+
 const authenticator = new Authenticator()
+
 const bandDatabase = new BandDatabase()
 
 export class BandController{
@@ -26,6 +28,7 @@ export class BandController{
                authenticator,
                bandDatabase
                 )
+            
             const token = await bandBusiness.createBand(input)
 
             res.status(200).send({ token });
@@ -36,6 +39,7 @@ export class BandController{
 
         await BaseDatabase.destroyConnection();
     }
+
 
     public async getBandByProperty (req: Request, res: Response) {
         try {

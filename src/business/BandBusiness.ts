@@ -10,21 +10,26 @@ export class BandBusiness {
         private idGenerator: IdGenerator,
         private authenticator: Authenticator,
         private bandDatabase: BandDatabase
-    ) { }
 
-    async createBand(band: BandInputDTO) {
+    ) {
 
-        const idGenerator = new IdGenerator();
-        const id = idGenerator.generate();
+    }
 
-        const bandDatabase = new BandDatabase();
-        await bandDatabase.createBand(id, band.name, band.music_genre, band.responsible);
+    async createBand(band:BandInputDTO){
 
-        const authenticator = new Authenticator();
-        const accessToken = authenticator.generateToken({ id });
+        if (!band.name || !band.music_genre || !band.responsible) {
+            throw new Error("Preencha os campos corretamente!")
+        }
+
+        const id = this.idGenerator.generate();
+
+        await this.bandDatabase.createBand(id, band.name, band.music_genre, band.responsible);
+
+        const accessToken = this.authenticator.generateToken({ id });
 
         return accessToken
     }
+
 
     public async getBandByProperty(
         token: string,
