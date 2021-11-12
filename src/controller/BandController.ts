@@ -7,7 +7,9 @@ import { Authenticator } from "../service/Authenticator";
 import { BandDatabase } from "../data/BandDatabase";
 
 const idGenerator = new IdGenerator()
-const autenticator = new Authenticator()
+
+const authenticator = new Authenticator()
+
 const bandDatabase = new BandDatabase()
 
 export class BandController{
@@ -22,11 +24,11 @@ export class BandController{
             }
 
             const bandBusiness = new BandBusiness(
-                idGenerator,
-                autenticator,
-                bandDatabase
-                
-            );
+               idGenerator,
+               authenticator,
+               bandDatabase
+                )
+            
             const token = await bandBusiness.createBand(input)
 
             res.status(200).send({ token });
@@ -36,5 +38,23 @@ export class BandController{
         }
 
         await BaseDatabase.destroyConnection();
+    }
+
+
+    public async getBandByProperty (req: Request, res: Response) {
+        try {
+            const token: string = req.headers.authorization!
+            const id = req.query.id as string
+            const name = req.query.name as string
+            
+            const result = await BandBusiness.getBandByProperty(token, id, name)
+
+            res.status(200).send({ result })
+
+        } catch (error) {
+            res
+            .status(error.statusCode || 400)
+            .send({ error: error.message });
+        }
     }
 }

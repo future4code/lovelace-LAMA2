@@ -10,6 +10,7 @@ app.use(express.json());
 app.use("/user", userRouter);
 
 
+
 const server = app.listen(3006, () => {
     if (server) {
       const address = server.address() as AddressInfo;
