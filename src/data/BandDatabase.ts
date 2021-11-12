@@ -32,7 +32,7 @@ export class BandDatabase extends BaseDatabase{
                 responsible
             })
             .into(BandDatabase.TABLE_NAME)
-        }catch(error: any){
+        }catch(error){
             throw new Error(error.sqlMessage || error.message);
         }
     }

@@ -5,6 +5,9 @@ import { Authenticator } from "../service/Authenticator";
 
 
 export class BandBusiness {
+    static getBandByProperty(token: string, id: string, name: string) {
+        throw new Error("Method not implemented.");
+    }
 
     constructor(
         private idGenerator: IdGenerator,
